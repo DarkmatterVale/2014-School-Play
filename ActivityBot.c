@@ -1,6 +1,6 @@
 //ActivityBot code here
 
-#include "simpletools.h"                      // Include simple tools
+#include "simpletools.h"                      // Include libraries
 #include "fdserial.h"
 #include "abdrive.h"
 
