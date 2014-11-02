@@ -8,29 +8,29 @@ fdserial *xbee;
 
 int main()                                    // Main function
 {
-  xbee = fdserial_open( 9, 8, 0, 9600 );
+  xbee = fdserial_open( 9, 8, 0, 9600 ); //Begin the serial connection ( this is why we needed the jumper cables connected to pins 8 and 9 )
 
-  char c;
+  char data; //Create the variable that will be used to hold the incoming data
 
-  while ( 1 )
+  while ( 1 ) //repeat this forever or until loss of power
   {
-    c = fdserial_rxChar( xbee );
+    data = fdserial_rxChar( xbee ); //set data to the data received from the XBee board
  
-    if ( c == 'f' )
+    if ( data == 'f' ) //If the data incoming is telling the robot to move forward
     {
-      drive_speed( 64, 64 );
-    } else if ( c == 'b' )
+      drive_speed( 64, 64 ); //move forward at 1/2 speed
+    } else if ( data == 'b' ) //If the data incoming is telling the robot to move backward
     {
-      drive_speed( -64, -64 );
-    } else if ( c == 'l' )
+      drive_speed( -64, -64 ); //move backward at 1/2 speed
+    } else if ( data == 'l' ) //If the data incoming is telling the root to turn left
     {
-      drive_speed( 0, 64 );
-    } else if ( c == 'r' )
+      drive_speed( 0, 64 ); //turn left in a spin turn at 1/2 speed
+    } else if ( data == 'r' ) //If the data incoming is telling the robot to turn right
     {
-      drive_speed( 64, 0 );
-    } else if ( c == 's' )
+      drive_speed( 64, 0 ); //turn right in a spin turn at 1/2 speed
+    } else if ( data == 's' ) //If the data incoming is telling the robot to stop
     {
-      drive_speed( 0, 0 );
+      drive_speed( 0, 0 ); //stop
     }
   }
 }
