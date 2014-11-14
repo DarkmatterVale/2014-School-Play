@@ -14,23 +14,24 @@ int main()                                    // Main function
 
   while ( 1 ) //repeat this forever or until loss of power
   {
-    data = fdserial_rxChar( xbee ); //set data to the data received from the XBee board
- 
-    if ( data == 'f' ) //If the data incoming is telling the robot to move forward
+    if ( ( data = fdserial_rxChar( xbee ) ) ) //set data to the data received from the XBee board
     {
-      drive_speed( 64, 64 ); //move forward at 1/2 speed
-    } else if ( data == 'b' ) //If the data incoming is telling the robot to move backward
-    {
-      drive_speed( -64, -64 ); //move backward at 1/2 speed
-    } else if ( data == 'l' ) //If the data incoming is telling the root to turn left
-    {
-      drive_speed( 0, 64 ); //turn left in a spin turn at 1/2 speed
-    } else if ( data == 'r' ) //If the data incoming is telling the robot to turn right
-    {
-      drive_speed( 64, 0 ); //turn right in a spin turn at 1/2 speed
-    } else if ( data == 's' ) //If the data incoming is telling the robot to stop
-    {
-      drive_speed( 0, 0 ); //stop
+      if ( data == 'f' ) //If the data incoming is telling the robot to move forward
+      {
+        drive_speed( 64, 64 ); //move forward at 1/2 speed
+      } else if ( data == 'b' ) //If the data incoming is telling the robot to move backward
+      {
+        drive_speed( -64, -64 ); //move backward at 1/2 speed
+      } else if ( data == 'l' ) //If the data incoming is telling the root to turn left
+      {
+        drive_speed( 0, 64 ); //turn left in a spin turn at 1/2 speed
+      } else if ( data == 'r' ) //If the data incoming is telling the robot to turn right
+      {
+        drive_speed( 64, 0 ); //turn right in a spin turn at 1/2 speed
+      } else if ( data == 's' ) //If the data incoming is telling the robot to stop
+      {
+        drive_speed( 0, 0 ); //stop
+      }
     }
   }
 }
